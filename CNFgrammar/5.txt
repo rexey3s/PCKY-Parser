@@ -1,0 +1,9 @@
+s->np,vp
+vp->vb,np
+np->np,jj
+np->un,nn
+np->Nam
+vb->mua
+nn->nhà
+jj->đẹp
+un->căn

@@ -1,0 +1,9 @@
+s->np,vp
+vp->vb,np
+np->np,jj
+np->q,nn
+np->nó
+vb->trồng
+q->nhiều
+nn->hoa
+jj->đẹp

@@ -1,0 +1,7 @@
+s->np,vp
+vp->vb,np
+np->Tuấn
+vb->nuôi
+np->nn,jj
+nn->cá
+jj->vàng

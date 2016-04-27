@@ -1,0 +1,9 @@
+﻿s->np,vp
+vp->vp,pp
+vp->vb,np
+pp->in,np
+np->Lan
+np->Nam
+vb->quen
+in->ở
+np->thư_viện

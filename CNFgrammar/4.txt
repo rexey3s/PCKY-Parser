@@ -1,0 +1,11 @@
+s->np,vp
+vp->vp,np
+np->nn,pp
+vp->rb,vb
+pp->in,np
+np->họ
+rb->đang
+vb->đọc
+nn->sách
+in->ở
+np->thư_viện

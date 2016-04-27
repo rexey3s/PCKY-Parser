@@ -1,0 +1,9 @@
+s->np,vp
+vp->vp,pp
+vp->rb,vb
+pp->in,np
+np->Tuấn
+vb->học
+in->ở
+rb->đang
+np->thành_phố

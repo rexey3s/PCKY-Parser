@@ -1,0 +1,5 @@
+﻿s->np,vp
+vp->vb,np
+np->Lan
+np->Nam
+vb->quen

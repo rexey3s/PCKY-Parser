@@ -1,0 +1,7 @@
+s->np,vp
+np->nn,jj
+vp->vb,rb
+nn->ông
+jj->già
+vb->đi
+rb->nhanh
