@@ -3,6 +3,7 @@ package com.chuongdang.comling;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Chuong Dang on 4/24/2016.
@@ -74,18 +75,20 @@ public class Cell {
     public void addAssocCell(AssocCell cell) {
         this.assocCells.add(cell);
     }
-    public boolean containAssocCells(Cell c1, Cell c2) {
+    public boolean containAssocCells(Cell c1, Cell c2, double p1, double p2) {
 //        boolean contained = true;
+        for(int k=0; k< this.getRules().size();k++) {
+            if(assocCells.get(k).getC1().getxPos() == c1.getxPos()
+                && assocCells.get(k).getC1().getyPos() ==  c1.getyPos()
+                && assocCells.get(k).getC2().getxPos() ==  c2.getxPos()
+                && assocCells.get(k).getC2().getyPos() ==  c2.getyPos()
+                    && totalProbabilities.get(k).equals(rules.get(k).getProbability()*p1*p2)
 
-        for (AssocCell assocCell: assocCells) {
-            if(assocCell.getC1().getxPos() != c1.getxPos()) return false;
-            if(assocCell.getC1().getyPos() != c1.getyPos()) return false;
-            if(assocCell.getC2().getxPos() != c2.getxPos()) return false;
-            if(assocCell.getC2().getyPos() != c2.getyPos()) return false;
-
-
+                    ) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public List<Double> getTotalProbabilities() {

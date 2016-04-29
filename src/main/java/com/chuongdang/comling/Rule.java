@@ -57,7 +57,9 @@ public class Rule {
     public String toString() {
         return head + "->" + Arrays.toString(body.toArray());
     }
-
+    public String getText() {
+        return head;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,4 +83,6 @@ public class Rule {
         result = 31 * result + body.hashCode();
         return result;
     }
+
+
 }
