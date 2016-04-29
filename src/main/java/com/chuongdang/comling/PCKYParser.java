@@ -1,5 +1,6 @@
 package com.chuongdang.comling;
 
+import java.io.PrintStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -112,6 +113,8 @@ public class PCKYParser {
                  root = new Node(cell.getRules().get(k), cell.getTotalProbabilities().get(k));
 
                 genTreeFromRoot(root, cell.getAssocCells().get(k));
+                System.out.println("Leaf nodes: "+Node.countLeaves(root));
+                root.printTree();
 //                cell.getAssocCells().get(k);
             }
         }
@@ -170,8 +173,8 @@ public class PCKYParser {
 
     public void printTree() {
         treeList.forEach(root -> {
-            BTreePrinter.printNode(root);
-
+//            BTreePrinter.printNode(root);
+                root.printTree();
         });
     }
 

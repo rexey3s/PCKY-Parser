@@ -1,5 +1,6 @@
 package com.chuongdang.comling;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +30,11 @@ class BTreePrinter {
         List<Node> newNodes = new ArrayList<Node>();
         for (Node node : nodes) {
             if (node != null) {
-                System.out.print(node.rule.getText());
+                System.out.println(node.rule.getText());
+                DecimalFormat df = new DecimalFormat("#.#####");
+
+                System.out.print(df.format(node.prob));
+
                 newNodes.add(node.left);
                 newNodes.add(node.right);
             } else {
@@ -53,16 +58,16 @@ class BTreePrinter {
                 if (nodes.get(j).left != null)
                     System.out.print("/");
                 else
-                    BTreePrinter.printWhitespaces(1);
+                    BTreePrinter.printWhitespaces(2);
 
                 BTreePrinter.printWhitespaces(i + i - 1);
 
                 if (nodes.get(j).right != null)
                     System.out.print("\\");
                 else
-                    BTreePrinter.printWhitespaces(1);
+                    BTreePrinter.printWhitespaces(2);
 
-                BTreePrinter.printWhitespaces(endgeLines + endgeLines - i +1);
+                BTreePrinter.printWhitespaces(endgeLines + endgeLines - i);
             }
 
             System.out.println("");
