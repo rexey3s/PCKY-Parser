@@ -82,9 +82,7 @@ public class Cell {
                 && assocCells.get(k).getC1().getyPos() ==  c1.getyPos()
                 && assocCells.get(k).getC2().getxPos() ==  c2.getxPos()
                 && assocCells.get(k).getC2().getyPos() ==  c2.getyPos()
-                    && totalProbabilities.get(k).equals(rules.get(k).getProbability()*p1*p2)
-
-                    ) {
+                    && Math.abs(totalProbabilities.get(k) - rules.get(k).getProbability()*p1*p2) < 1E-11) {
                 return true;
             }
         }
@@ -105,11 +103,11 @@ public class Cell {
         for(int k=0; k< this.getRules().size();k++) {
             final Rule rule = getRules().get(k);
             if(this.getAssocCells().isEmpty()) {
-                DecimalFormat df = new DecimalFormat("#.#####");
+                DecimalFormat df = new DecimalFormat("#.########");
                 sb.append("[" + rule.getHead() + "](P="+df.format(rule.getProbability())+")");
             }
             else {
-                DecimalFormat df = new DecimalFormat("#.##########");
+                DecimalFormat df = new DecimalFormat("#.#############");
                 AssocCell assocCell = this.getAssocCells().get(k);
                 sb.append("[" + rule.getHead()
                         + "((" + assocCell.getC1().getxPos() + ","+assocCell.getC1().getyPos()

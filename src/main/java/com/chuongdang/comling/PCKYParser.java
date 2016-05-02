@@ -66,9 +66,10 @@ public class PCKYParser {
                                                     table[i][j].addRule(rule);
                                                     table[i][j].addAssocCell(new AssocCell(c1, c2));
                                                     table[i][j].addTotalProbability(
-                                                            rule.getProbability()
-                                                                    * c1.getTotalProbabilities().get(u)
-                                                                    * c2.getTotalProbabilities().get(v));
+                                                                rule.getProbability()
+                                                                        * c1.getTotalProbabilities().get(u)
+                                                                        * c2.getTotalProbabilities().get(v));
+
                                                 }
 
                                             }
@@ -109,12 +110,15 @@ public class PCKYParser {
     private Node createRoot(Cell cell) {
         Node root = null;
         for(int k = 0; k < cell.getRules().size(); k++) {
-            if(Objects.equals(cell.getRules().get(k).getHead(), "s")) {
-                 root = new Node(cell.getRules().get(k), cell.getTotalProbabilities().get(k));
+            if(Objects.equals(cell.getRules().get(k).getHead(), "s") && cell.getTotalProbabilities().get(k) >= 1E-20) {
+                root = new Node(cell.getRules().get(k), cell.getTotalProbabilities().get(k));
 
                 genTreeFromRoot(root, cell.getAssocCells().get(k));
-                System.out.println("Leaf nodes: "+Node.countLeaves(root));
-                root.printTree();
+                if(Node.countLeaves(root) == length) {
+                    System.out.println("Leaf nodes: "+Node.countLeaves(root));
+                    root.printTree();
+
+                }
 //                cell.getAssocCells().get(k);
             }
         }
@@ -133,10 +137,10 @@ public class PCKYParser {
             Rule termRule2 = term2.iterator().next();
             root.right = new Node(termRule2, termRule2.getProbability());
             for(int u = 0; u<assocCell.getC1().getRules().size(); u++) {
-                if (root.getProb() == root.getRule().getProbability() * assocCell.getC1().getTotalProbabilities().get(u) * termRule2.getProbability()) {
+                if (Math.abs(root.getProb() - root.getRule().getProbability() * assocCell.getC1().getTotalProbabilities().get(u) * termRule2.getProbability()) < 1E-11) {
                     root.left = new Node(assocCell.getC1().getRules().get(u), assocCell.getC1().getTotalProbabilities().get(u));
                     genTreeFromRoot(root.left, assocCell.getC1().getAssocCells().get(u));
-//                    break;
+                    break;
                 }
 
             }
@@ -145,22 +149,22 @@ public class PCKYParser {
             Rule termRule1 = term1.iterator().next();
             root.left = new Node(termRule1, termRule1.getProbability());
             for(int v = 0; v<assocCell.getC2().getRules().size(); v++) {
-                if (root.getProb() == root.getRule().getProbability() * assocCell.getC2().getTotalProbabilities().get(v) * termRule1.getProbability()) {
+                if (Math.abs(root.getProb() - (Double)root.getRule().getProbability() * assocCell.getC2().getTotalProbabilities().get(v) * termRule1.getProbability()) < 1E-11) {
                     root.right = new Node(assocCell.getC2().getRules().get(v), assocCell.getC2().getTotalProbabilities().get(v));
                     genTreeFromRoot(root.right, assocCell.getC2().getAssocCells().get(v));
-//                    break;
+                    break;
                 }
             }
 
         } else {
             for(int u = 0; u<assocCell.getC1().getRules().size(); u++) {
-                for (int v = 0; v < assocCell.getC1().getRules().size(); v++) {
-                    if (root.getProb() == root.getRule().getProbability() * assocCell.getC1().getTotalProbabilities().get(u) * assocCell.getC2().getTotalProbabilities().get(v)) {
+                for (int v = 0; v < assocCell.getC2().getRules().size(); v++) {
+                    if (Math.abs(root.getProb() - root.getRule().getProbability() * assocCell.getC1().getTotalProbabilities().get(u) * assocCell.getC2().getTotalProbabilities().get(v)) < 1E-11) {
                         root.left = new Node(assocCell.getC1().getRules().get(u), assocCell.getC1().getTotalProbabilities().get(u));
                         genTreeFromRoot(root.left, assocCell.getC1().getAssocCells().get(u));
                         root.right = new Node(assocCell.getC2().getRules().get(v), assocCell.getC2().getTotalProbabilities().get(v));
                         genTreeFromRoot(root.right, assocCell.getC2().getAssocCells().get(v));
-//                        break;/
+                        break;
                     }
 
                 }

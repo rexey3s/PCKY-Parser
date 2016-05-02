@@ -43,7 +43,7 @@ class Node   {
         if (rule.isTerminal()) {
             System.out.print(rule.toString());
         } else {
-            DecimalFormat df = new DecimalFormat("#.#########");
+            DecimalFormat df = new DecimalFormat("#.#############");
 
             System.out.print(rule.getHead()+"("+df.format(prob)+")");
         }

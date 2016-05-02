@@ -1,0 +1,13 @@
+s->np,vp
+vp->vb,np
+np->nn,vp
+pp->in,nn
+vp->vp,pp
+vp->rb,vb
+np->Lan
+vb->thấy
+nn->cá
+rb->đang
+vb->bơi
+in->trong
+nn->hồ

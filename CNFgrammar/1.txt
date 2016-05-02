@@ -1,8 +1,10 @@
 ﻿s->np,vp
 vp->vp,pp
+np->nn,adjm
 vp->vb,np
 pp->in,np
-np->Lan
+nn->cô
+adjm->ta
 np->Nam
 vb->quen
 in->ở

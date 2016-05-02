@@ -2,7 +2,9 @@ s->np,vp
 vp->vp,pp
 vp->rb,vb
 pp->in,np
-np->Tuấn
+np->nn,adjm
+nn->cậu
+adjm->ta
 vb->học
 in->ở
 rb->đang

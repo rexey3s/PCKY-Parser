@@ -1,0 +1,13 @@
+s->np,vp
+vp->vb,np
+np->q,np
+np->np,pp
+np->un,nn
+pp->in,nn
+np->Lan
+vb->có
+q->vài
+un->mảnh
+nn->đất
+in->ở
+nn->quê

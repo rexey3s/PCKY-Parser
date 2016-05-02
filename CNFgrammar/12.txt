@@ -1,0 +1,9 @@
+s->np,vp
+vp->vp,pp
+vp->rb,vb
+pp->in,nn
+np->Lan
+rb->vừa
+vb->đi
+in->đến
+nn->trường

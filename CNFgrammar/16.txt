@@ -1,0 +1,15 @@
+s->np,vp
+np->np,pp
+np->un,nn
+pp->in,nn
+vp->vp,np
+np->nn,jj
+un->con
+nn->két
+in->của
+nn->Nam
+vp->vb,vb
+vb->biết
+vb->nói
+nn->tiếng
+jj->Việt

@@ -1,0 +1,13 @@
+s->np,vp
+vp->vb,np
+np->np,adjp
+np->cd,np
+np->un,nn
+adjp->adv,jj
+np->Tuấn
+vb->có
+cd->một
+un->căn
+nn->nhà
+adv->khá
+jj->to

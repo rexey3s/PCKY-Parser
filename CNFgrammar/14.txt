@@ -1,0 +1,15 @@
+s->np,vp
+vp->vp,np
+vp->rb,vb
+np->cd,np
+np->np,adjp
+np->un,nn
+adjp->adv,jj
+np->Nam
+rb->đang
+vb->nuôi
+cd->một
+un->con
+nn->két
+adv->rất
+jj->đẹp

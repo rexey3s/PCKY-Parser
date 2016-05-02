@@ -1,0 +1,9 @@
+s->np,vp
+np->nn,adjm
+vp->vb,adjp
+adjp->adv,jj
+nn->ông
+adjm->ấy
+vb->sống
+adv->rất
+jj->thọ

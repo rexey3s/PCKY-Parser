@@ -151,7 +151,6 @@ public class CNFGrammarParser {
         TextTable tt = new TextTable(words, pckyParser.getTable());
         tt.printTable();
         pckyParser.buildTree();
-//        pckyParser.printTree();
     }
 
 }

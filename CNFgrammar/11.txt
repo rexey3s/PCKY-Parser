@@ -1,0 +1,13 @@
+s->np,vp
+vp->vb,np
+np->np,pp
+np->q,np
+pp->in,nn
+np->nn,jj
+np->Tuấn
+vb->gặp
+q->mấy
+nn->bạn
+jj->cũ
+in->ở
+nn->trường

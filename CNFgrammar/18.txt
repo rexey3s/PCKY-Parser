@@ -1,0 +1,12 @@
+s->np,vp
+vp->rb,vb
+pp->in,np
+np->nn,pp
+pp->in,nn
+np->Nam
+rb->hay
+vb->đi
+in->tới
+nn->trường
+in->bằng
+nn->xe_buýt
