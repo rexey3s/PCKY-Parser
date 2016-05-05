@@ -13,8 +13,10 @@ public class PCKYParser {
     }
     private int length;
     private Cell[][] table;
-
-    public void parseCKY(String[] words, Set<Rule> ruleSet) {
+    private String sentence;
+    public void parseCKY(String sentence, Set<Rule> ruleSet) {
+        String[] words = sentence.split(" ");
+        this.sentence = sentence;
         List<String> wordList = Arrays.asList(words);
         table = new Cell[words.length][words.length];
         length = words.length;
@@ -114,7 +116,10 @@ public class PCKYParser {
                 root = new Node(cell.getRules().get(k), cell.getTotalProbabilities().get(k));
 
                 genTreeFromRoot(root, cell.getAssocCells().get(k));
-                if(Node.countLeaves(root) == length) {
+                if(Node.countLeaves(root) == length
+                        && Node.concenate(root).trim().equals(sentence)
+                        ) {
+                    System.out.println("concenate string: "+Node.concenate(root));
                     System.out.println("Leaf nodes: "+Node.countLeaves(root));
                     root.printTree();
 

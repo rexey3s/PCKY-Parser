@@ -143,12 +143,11 @@ public class CNFGrammarParser {
         }
 
 //        String sentence = "Nam quen Lan ở thư_viện";
-        String[] words = ruleParser.getSentence().split(" ");
-        pckyParser.parseCKY(words, ruleSet);
+        pckyParser.parseCKY(ruleParser.getSentence(), ruleSet);
         System.out.println("Số từ khác nhau: " + ruleParser.countDistinctWords(new File("./sentence")));
         TextTable grammarTable = new TextTable(new String[]{"CNF grammar", "P"}, CNFgrammar);
         grammarTable.printTable();
-        TextTable tt = new TextTable(words, pckyParser.getTable());
+        TextTable tt = new TextTable( ruleParser.getSentence().split(" "), pckyParser.getTable());
         tt.printTable();
         pckyParser.buildTree();
     }

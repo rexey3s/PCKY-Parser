@@ -76,4 +76,13 @@ class Node   {
             return countLeaves(node.left) + countLeaves(node.right);
         }
     }
+    public static String  concenate(Node node){
+        if( node == null )
+            return "";
+        if( node.left == null && node.right == null ) {
+            return node.getRule().getBody().get(0);
+        } else {
+            return concenate(node.left) + " "+ concenate(node.right);
+        }
+    }
 }
