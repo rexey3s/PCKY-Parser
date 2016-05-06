@@ -1,5 +1,9 @@
 package com.chuongdang.comling;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,6 +14,18 @@ import java.util.stream.Collectors;
 public class PCKYParser {
     public Cell[][] getTable() {
         return table;
+    }
+    public String[][] getStringTable() {
+        String[][] strTable = new String[length][length];
+        for(int i=0; i < length; i++) {
+            for(int j=0;j<length; j++) {
+                if(table[i][j] != null)
+                strTable[i][j] = table[i][j].toString();
+                else
+                    strTable[i][j] = "";
+            }
+        }
+        return strTable;
     }
     private int length;
     private Cell[][] table;
@@ -108,7 +124,39 @@ public class PCKYParser {
             }
         }
     }
+    public void buildTree2(PrintStream ps) throws IOException {
+        for(int j = length - 1; j >= 0; j--) {
+            for(int i = 0; i < j; i++) {
+                if(j == (length -1) && i == 0) {
+                    Cell cell = table[i][j];
+                    Node node = createRoot2(cell,ps);
+                    if (node != null) {
+                        treeList.add(node);
+                    }
+                }
+            }
+        }
+    }
+    private Node createRoot2(Cell cell, PrintStream ps) throws IOException {
+        Node root = null;
+        for(int k = 0; k < cell.getRules().size(); k++) {
+            if(Objects.equals(cell.getRules().get(k).getHead(), "s") && cell.getTotalProbabilities().get(k) >= 1E-20) {
+                root = new Node(cell.getRules().get(k), cell.getTotalProbabilities().get(k));
 
+                genTreeFromRoot(root, cell.getAssocCells().get(k));
+                if(Node.countLeaves(root) == length
+                        && Node.concenate(root).trim().equals(sentence)
+                        ) {
+                    ps.println("concenate string: "+Node.concenate(root));
+                    ps.println("Leaf nodes: "+Node.countLeaves(root));
+                    root.printTree2(ps);
+
+                }
+//                cell.getAssocCells().get(k);
+            }
+        }
+        return root;
+    }
     private Node createRoot(Cell cell) {
         Node root = null;
         for(int k = 0; k < cell.getRules().size(); k++) {
@@ -186,5 +234,5 @@ public class PCKYParser {
                 root.printTree();
         });
     }
-
 }
+

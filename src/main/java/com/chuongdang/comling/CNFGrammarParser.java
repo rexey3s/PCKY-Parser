@@ -64,7 +64,7 @@ public class CNFGrammarParser {
             }
         }
     }
-    private Set<Rule> getRulesWithProbabilities() {
+    public Set<Rule> getRulesWithProbabilities() {
         Map<String, List<Rule>> ruleByHead= getGrammar().stream().collect(Collectors.groupingBy(Rule::getHead, Collectors.toList()));
         ruleByHead.forEach((head, rules) -> {
 //            logger.info("Group by rule Head: {}", head);
@@ -118,38 +118,42 @@ public class CNFGrammarParser {
         return new Rule(head, body);
     }
 
-    public static void main(String[] args) throws Exception {
-        CNFGrammarParser ruleParser = new CNFGrammarParser();
-        PCKYParser pckyParser = new PCKYParser();
-        if(args.length != 2) throw new Exception("Invalid argument");
-        if(Objects.equals(args[0], "-f")) {
-            ruleParser.readSentenceFile(args[1]);
-        }
-        ruleParser.readGrammarDir(new File("./CNFgrammar"));
-        Set<Rule> ruleSet = ruleParser.getRulesWithProbabilities();
-        Object[] ruleArr =  ruleSet.toArray();
-        String[][] CNFgrammar = new String[ruleSet.size()][2];
-
-//        for(Rule rule : ruleSet) {
-//            logger.info("Rule head: {}; rule body: {}; Prob: {}", rule.getHead(), rule.getBody().toArray(), rule.getProbability());
+//    public static void main(String[] args) throws Exception {
+//        CNFGrammarParser ruleParser = new CNFGrammarParser();
+//        PCKYParser pckyParser = new PCKYParser();
+//        if(args.length != 2) throw new Exception("Invalid argument");
+//        if(Objects.equals(args[0], "-f")) {
+//            ruleParser.readSentenceFile(args[1]);
+//        }
+//        ruleParser.readGrammarDir(new File("./CNFgrammar"));
+//        Set<Rule> ruleSet = ruleParser.getRulesWithProbabilities();
+//        Object[] ruleArr =  ruleSet.toArray();
+//        String[][] CNFgrammar = new String[ruleSet.size()][2];
 //
-//        };
+////        for(Rule rule : ruleSet) {
+////            logger.info("Rule head: {}; rule body: {}; Prob: {}", rule.getHead(), rule.getBody().toArray(), rule.getProbability());
+////
+////        };
+//
+//        for(int i = 0 ; i < ruleSet.size(); i++) {
+//            DecimalFormat df = new DecimalFormat("#.#####");
+//            Rule rule = (Rule) ruleArr[i];
+//            CNFgrammar[i][0] = rule.toString();
+//            CNFgrammar[i][1] = String.valueOf(df.format(rule.getProbability()));
+//        }
+//
+////        String sentence = "Nam quen Lan ở thư_viện";
+//        pckyParser.parseCKY(ruleParser.getSentence(), ruleSet);
+//        System.out.println("Số từ khác nhau: " + ruleParser.countDistinctWords(new File("./sentence")));
+//        TextTable grammarTable = new TextTable(new String[]{"CNF grammar", "P"}, CNFgrammar);
+//        grammarTable.printTable();
+//        TextTable tt = new TextTable( ruleParser.getSentence().split(" "), pckyParser.getTable());
+//        tt.printTable();
+//        pckyParser.buildTree();
+//    }
 
-        for(int i = 0 ; i < ruleSet.size(); i++) {
-            DecimalFormat df = new DecimalFormat("#.#####");
-            Rule rule = (Rule) ruleArr[i];
-            CNFgrammar[i][0] = rule.toString();
-            CNFgrammar[i][1] = String.valueOf(df.format(rule.getProbability()));
-        }
+    public void readSentence(String text) {
 
-//        String sentence = "Nam quen Lan ở thư_viện";
-        pckyParser.parseCKY(ruleParser.getSentence(), ruleSet);
-        System.out.println("Số từ khác nhau: " + ruleParser.countDistinctWords(new File("./sentence")));
-        TextTable grammarTable = new TextTable(new String[]{"CNF grammar", "P"}, CNFgrammar);
-        grammarTable.printTable();
-        TextTable tt = new TextTable( ruleParser.getSentence().split(" "), pckyParser.getTable());
-        tt.printTable();
-        pckyParser.buildTree();
+        sentence = text;
     }
-
 }
